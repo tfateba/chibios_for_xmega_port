@@ -210,7 +210,7 @@ static void usart_cfg_chsize(UARTDriver *uartp) {
 /**
  * @brief   Configuration of the baud rate.
  * @note    BSCALE is set to 0 for the moment.
- * @TODO    Support all the BSCAL value
+ * @TODO    Support all the BSCALE value
  *
  * @param[in] uartp     pointer to the @p UARTDriver object
  */
