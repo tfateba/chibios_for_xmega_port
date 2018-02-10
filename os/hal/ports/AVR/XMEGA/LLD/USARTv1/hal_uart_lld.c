@@ -253,7 +253,7 @@ static void usart_start(UARTDriver *uartp) {
   /* Defensive programming, starting from a clean state. */
   usart_stop(uartp);
 
-  /* Resetting eventual pending status flags.*/
+  /* Resetting eventual pending status flags. */
 
   /* Starting the receiver idle loop. */
   /*uart_enter_rx_idle_loop(uartp);*/
@@ -391,9 +391,9 @@ void uart_lld_start(UARTDriver *uartp) {
 void uart_lld_stop(UARTDriver *uartp) {
 
   if (uartp->state == UART_READY) {
-    /* Resets the peripheral.*/
+    /* Resets the peripheral.  */
     usart_stop(uartp);
-    /* Disables the peripheral.*/
+    /* Disables the peripheral. */
 #if AVR_UART_USE_USART1 == TRUE
     if (&USART1D == uartp) {
       /* TODO: Implement the DMA part here. */
