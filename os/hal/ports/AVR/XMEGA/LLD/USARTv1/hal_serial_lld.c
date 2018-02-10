@@ -1,5 +1,5 @@
 /*
-    ChibiOS - Copyright (C) 2016..2018 Giovanni Theodore Ateba
+    ChibiOS - Copyright (C) 2016..2018 Theodore Ateba
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
