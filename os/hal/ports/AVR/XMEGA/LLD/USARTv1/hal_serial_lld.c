@@ -392,6 +392,22 @@ static void notify5(io_queue_t *qp) {
  *
  * @isr
  */
+OSAL_IRQ_HANDLER(USARTC0_TXC_vect) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  osalSysLockFromISR();
+  USARTC0.CTRLA = (USARTC0.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_LO_gc;
+  osalSysUnlockFromISR();
+
+  OSAL_IRQ_EPILOGUE();
+}
+
+/**
+ * @brief   USART1 TX IRQ handler, transmission complete interruption.
+ *
+ * @isr
+ */
 OSAL_IRQ_HANDLER(USARTC0_DRE_vect) {
 
   msg_t msg;
@@ -404,8 +420,7 @@ OSAL_IRQ_HANDLER(USARTC0_DRE_vect) {
   osalSysUnlockFromISR();
 
   if (msg < MSG_OK) {
-    //USARTC0.CTRLB &= ~USART_DREINTLVL_gm;
-    //USARTC0.CTRLB &= ~USART_DREINTLVL_gm; /* TODO: Implement this block.  */
+    USARTC0.CTRLA = (USARTC0.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_OFF_gc;
   }
   else {
     USARTC0.DATA = msg;
@@ -438,6 +453,22 @@ OSAL_IRQ_HANDLER(USARTC0_RXC_vect) {
 
 #if AVR_SERIAL_USE_USART2 || defined(__DOXYGEN__)
 /**
+ * @brief   USART1 TX IRQ handler, transmission complete interruption.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(USARTC0_TXC_vect) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  osalSysLockFromISR();
+  USARTC1.CTRLA = (USARTC1.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_LO_gc;
+  osalSysUnlockFromISR();
+
+  OSAL_IRQ_EPILOGUE();
+}
+
+/**
  * @brief   USART2 TX IRQ handler, transmission complete interruption.
  *
  * @isr
@@ -454,8 +485,7 @@ OSAL_IRQ_HANDLER(USARTC1_DRE_vect) {
   osalSysUnlockFromISR();
 
   if (msg < MSG_OK) {
-    //USARTC1.CTRLB &= ~USART_DREINTLVL_gm;
-    //USARTC1.CTRLB &= ~USART_DREINTLVL_gm; /* TODO: Implement this block.  */
+    USARTC1.CTRLA = (USARTC1.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_OFF_gc;
   }
   else {
     USARTC1.DATA = msg;
@@ -488,6 +518,22 @@ OSAL_IRQ_HANDLER(USARTC1_RXC_vect) {
 
 #if AVR_SERIAL_USE_USART3 || defined(__DOXYGEN__)
 /**
+ * @brief   USART1 TX IRQ handler, transmission complete interruption.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(USARTD0_TXC_vect) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  osalSysLockFromISR();
+  USARTD0.CTRLA = (USARTD0.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_LO_gc;
+  osalSysUnlockFromISR();
+
+  OSAL_IRQ_EPILOGUE();
+}
+
+/**
  * @brief   USART3 TX IRQ handler, transmission complete interruption.
  *
  * @isr
@@ -504,8 +550,7 @@ OSAL_IRQ_HANDLER(USARTD0_DRE_vect) {
   osalSysUnlockFromISR();
 
   if (msg < MSG_OK) {
-    //USARTD0.CTRLB &= ~USART_DREINTLVL_gm;
-    //USARTD0.CTRLB &= ~USART_DREINTLVL_gm; /* TODO: Implement this block.  */
+    USARTD0.CTRLA = (USARTD0.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_OFF_gc;
   }
   else {
     USARTD0.DATA = msg;
@@ -538,6 +583,22 @@ OSAL_IRQ_HANDLER(USARTD0_RXC_vect) {
 
 #if AVR_SERIAL_USE_USART4 || defined(__DOXYGEN__)
 /**
+ * @brief   USART1 TX IRQ handler, transmission complete interruption.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(USARTD1_TXC_vect) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  osalSysLockFromISR();
+  USARTD1.CTRLA = (USARTD1.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_LO_gc;
+  osalSysUnlockFromISR();
+
+  OSAL_IRQ_EPILOGUE();
+}
+
+/**
  * @brief   USART4 TX IRQ handler, transmission complete interruption.
  *
  * @isr
@@ -554,8 +615,7 @@ OSAL_IRQ_HANDLER(USARTD1_DRE_vect) {
   osalSysUnlockFromISR();
 
   if (msg < MSG_OK) {
-    //USARTD1.CTRLB &= ~USART_DREINTLVL_gm;
-    //USARTD1.CTRLB &= ~USART_DREINTLVL_gm; /* TODO: Implement this block.  */
+    USARTD1.CTRLA = (USARTD1.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_OFF_gc;
   }
   else {
     USARTD1.DATA = msg;
@@ -588,6 +648,22 @@ OSAL_IRQ_HANDLER(USARTD1_RXC_vect) {
 
 #if AVR_SERIAL_USE_USART5 || defined(__DOXYGEN__)
 /**
+ * @brief   USART1 TX IRQ handler, transmission complete interruption.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(USARTE0_TXC_vect) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  osalSysLockFromISR();
+  USARTE0.CTRLA = (USARTE0.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_LO_gc;
+  osalSysUnlockFromISR();
+
+  OSAL_IRQ_EPILOGUE();
+}
+
+/**
  * @brief   USART5 TX IRQ handler, transmission complete interruption.
  *
  * @isr
@@ -604,8 +680,7 @@ OSAL_IRQ_HANDLER(USARTE0_DRE_vect) {
   osalSysUnlockFromISR();
 
   if (msg < MSG_OK) {
-    //USARTE0.CTRLB &= ~USART_DREINTLVL_gm;
-    //USARTE0.CTRLB &= ~USART_DREINTLVL_gm; /* TODO: Implement this block.  */
+    USARTE0.CTRLA = (USARTE0.CTRLA & ~USART_DREINTLVL_gm) | USART_DREINTLVL_OFF_gc;
   }
   else {
     USARTE0.DATA = msg;
