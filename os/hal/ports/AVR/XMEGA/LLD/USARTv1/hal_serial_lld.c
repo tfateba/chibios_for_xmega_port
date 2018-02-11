@@ -330,17 +330,6 @@ static void set_error(SerialDriver *sdp, uint8_t sr) {
   chnAddFlagsI(sdp, sts);
 }
 
-/**
- * @brief   Common IRQ handler.
- *
- * @param[in] sdp       communication channel associated to the USART
- */
-static void serve_interrupt(SerialDriver *sdp) {
-
-  (void)sdp;
-  /* TODO: To be implemented. */
-}
-
 #if AVR_SERIAL_USE_USART1 || defined(__DOXYGEN__)
 static void notify1(io_queue_t *qp) {
 
@@ -414,7 +403,6 @@ OSAL_IRQ_HANDLER(USARTC0_DRE_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD1);
   osalSysLockFromISR();
   msg = oqGetI(&SD1.oqueue);
   osalSysUnlockFromISR();
@@ -440,7 +428,6 @@ OSAL_IRQ_HANDLER(USARTC0_RXC_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD1);
   status = USARTC0.STATUS;
   if (status & (USART_FERR_bm | USART_PERR_bm | USART_BUFOVF_bm));
     set_error(&SD1, status);
@@ -479,7 +466,6 @@ OSAL_IRQ_HANDLER(USARTC1_DRE_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD2);
   osalSysLockFromISR();
   msg = oqGetI(&SD2.oqueue);
   osalSysUnlockFromISR();
@@ -505,7 +491,6 @@ OSAL_IRQ_HANDLER(USARTC1_RXC_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD2);
   status = USARTC1.STATUS;
   if (status & (USART_FERR_bm | USART_PERR_bm | USART_BUFOVF_bm));
     set_error(&SD2, status);
@@ -544,7 +529,6 @@ OSAL_IRQ_HANDLER(USARTD0_DRE_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD3);
   osalSysLockFromISR();
   msg = oqGetI(&SD3.oqueue);
   osalSysUnlockFromISR();
@@ -570,7 +554,6 @@ OSAL_IRQ_HANDLER(USARTD0_RXC_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD3);
   status = USARTD0.STATUS;
   if (status & (USART_FERR_bm | USART_PERR_bm | USART_BUFOVF_bm));
     set_error(&SD3, status);
@@ -609,7 +592,6 @@ OSAL_IRQ_HANDLER(USARTD1_DRE_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD4);
   osalSysLockFromISR();
   msg = oqGetI(&SD4.oqueue);
   osalSysUnlockFromISR();
@@ -635,7 +617,6 @@ OSAL_IRQ_HANDLER(USARTD1_RXC_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD4);
   status = USARTD1.STATUS;
   if (status & (USART_FERR_bm | USART_PERR_bm | USART_BUFOVF_bm));
     set_error(&SD4, status);
@@ -674,7 +655,6 @@ OSAL_IRQ_HANDLER(USARTE0_DRE_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD5);
   osalSysLockFromISR();
   msg = oqGetI(&SD5.oqueue);
   osalSysUnlockFromISR();
@@ -700,7 +680,6 @@ OSAL_IRQ_HANDLER(USARTE0_RXC_vect) {
 
   OSAL_IRQ_PROLOGUE();
 
-  serve_interrupt(&SD5);
   status = USARTE0.STATUS;
   if (status & (USART_FERR_bm | USART_PERR_bm | USART_BUFOVF_bm));
     set_error(&SD5, status);
